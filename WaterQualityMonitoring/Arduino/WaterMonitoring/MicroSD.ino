@@ -1,13 +1,11 @@
 #define SD_CS_PIN 4
-const char* filePath = "DATA.CSV";
+extern const char* filePath; // Menggunakan variabel filePath dari tab utama
 
 void initSD() {
-  Serial.print(F("Menginisialisasi MicroSD... "));
+  // Serial.print opsional jika sewaktu-waktu ingin dipakai untuk debug
   if (!SD.begin(SD_CS_PIN)) {
-    Serial.println(F("GAGAL!"));
     return; 
   }
-  Serial.println(F("SUKSES!"));
 
   if (!SD.exists(filePath)) {
     File dataFile = SD.open(filePath, FILE_WRITE);
